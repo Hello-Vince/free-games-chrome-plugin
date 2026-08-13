@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Games Tracker</title>
+    <link rel="stylesheet" href="styles/popup.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand-mark" aria-hidden="true">FG</div>
+        <div class="brand-copy">
+          <h1>Free Games Tracker</h1>
+          <p id="header-summary">Checking for offers…</p>
+        </div>
+        <button id="settings-button" class="icon-button" type="button" aria-label="Open settings">
+          <span aria-hidden="true">⚙</span>
+        </button>
+      </header>
+
+      <main>
+        <section id="feed-view" aria-labelledby="feed-heading">
+          <h2 id="feed-heading" class="sr-only">Available offers</h2>
+          <div id="notice" class="notice" role="status" hidden></div>
+          <div id="loading" class="loading-state" role="status">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Finding active giveaways…</span>
+          </div>
+          <div id="empty-state" class="empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">✓</div>
+            <h2 id="empty-title">You’re all caught up</h2>
+            <p id="empty-message"></p>
+            <button id="empty-action" class="secondary-button" type="button" hidden></button>
+          </div>
+          <div id="offer-list" class="offer-list"></div>
+        </section>
+
+        <section id="settings-view" aria-labelledby="settings-heading" hidden>
+          <div class="settings-heading-row">
+            <button id="back-button" class="icon-button back-button" type="button" aria-label="Back to offers">←</button>
+            <div>
+              <h2 id="settings-heading">What do you want to see?</h2>
+              <p>Selections affect both the feed and new-offer badge.</p>
+            </div>
+          </div>
+
+          <div class="settings-actions" aria-label="Settings shortcuts">
+            <button id="select-all-button" class="text-button" type="button">Select all</button>
+            <button id="clear-all-button" class="text-button" type="button">Clear all</button>
+            <button id="restore-defaults-button" class="text-button" type="button">Restore defaults</button>
+          </div>
+
+          <fieldset class="settings-group">
+            <legend>Platforms</legend>
+            <div id="platform-options" class="option-grid"></div>
+          </fieldset>
+
+          <fieldset class="settings-group">
+            <legend>Offer types</legend>
+            <div id="type-options" class="option-grid"></div>
+          </fieldset>
+
+          <p id="settings-status" class="settings-status" role="status" aria-live="polite"></p>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span id="last-updated">Not updated yet</span>
+        <button id="refresh-button" class="footer-button" type="button">Refresh</button>
+        <span class="footer-separator" aria-hidden="true">•</span>
+        <a href="https://www.gamerpower.com/" target="_blank" rel="noreferrer">Powered by GamerPower</a>
+      </footer>
+    </div>
+
+    <script type="module" src="src/popup.js"></script>
+  </body>
+</html>

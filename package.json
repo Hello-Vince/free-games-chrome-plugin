@@ -1,0 +1,16 @@
+{
+  "name": "free-games-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A configurable Chrome extension for active GamerPower giveaways.",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "icons": "node scripts/generate-icons.mjs",
+    "preview": "node scripts/preview.mjs",
+    "package": "node scripts/package.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

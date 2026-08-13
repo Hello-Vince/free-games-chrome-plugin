@@ -3,6 +3,7 @@
   "name": "Free Games Tracker",
   "version": "0.1.0",
   "description": "Find active game giveaways and track which offers you have already visited.",
+  "homepage_url": "https://hello-vince.github.io/free-games-chrome-plugin/",
   "minimum_chrome_version": "120",
   "permissions": [
     "storage",

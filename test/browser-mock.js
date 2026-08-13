@@ -52,7 +52,13 @@ let previewState = {
   lastFetchError: null
 };
 
-const fallbackMode = new URLSearchParams(globalThis.location.search).has("fallback");
+const previewParameters = new URLSearchParams(globalThis.location.search);
+const fallbackMode = previewParameters.has("fallback");
+if (previewParameters.has("visited")) {
+  previewState.seenOffers = Object.fromEntries(
+    previewState.offersCache.items.map(({ id }) => [id, Date.now()])
+  );
+}
 
 globalThis.chrome = {
   runtime: {

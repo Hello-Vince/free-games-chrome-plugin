@@ -53,3 +53,7 @@ The extension does not request browsing-history, active-tab, notification, ident
 Giveaway information is provided by [GamerPower](https://www.gamerpower.com/). Clicking **Get offer** records that offer as seen, then opens GamerPower’s claim link. A click does not verify that an item was added to a storefront library.
 
 See [PRIVACY.md](PRIVACY.md) for the complete privacy disclosure.
+
+The hosted privacy notice is available at [hello-vince.github.io/free-games-chrome-plugin/privacy/](https://hello-vince.github.io/free-games-chrome-plugin/privacy/).
+
+Chrome Web Store submission copy and graphic assets are maintained in [`store/`](store/).

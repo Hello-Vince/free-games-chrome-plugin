@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Privacy notice for the Free Games Tracker Chrome extension.">
+    <title>Privacy Notice — Free Games Tracker</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../">
+        <img src="../icon-128.png" alt="">
+        <span>Free Games Tracker</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="./" aria-current="page">Privacy</a>
+        <a href="https://github.com/Hello-Vince/free-games-chrome-plugin/issues">Support</a>
+      </nav>
+    </header>
+    <main class="page">
+      <h1>Privacy Notice</h1>
+      <p class="updated">Last updated: August 13, 2026</p>
+      <p>Free Games Tracker does not collect, sell, transmit, or analyze personal information. It has no account system, analytics, advertising, or extension-owned backend.</p>
+
+      <h2>Data stored locally</h2>
+      <p>Chrome’s local extension storage contains:</p>
+      <ul>
+        <li>Selected platform and offer-type preferences</li>
+        <li>A cached copy of active giveaway data</li>
+        <li>Discovered platform and offer-type labels</li>
+        <li>GamerPower offer IDs and timestamps for offers the user clicked</li>
+        <li>The time and generic status of the latest refresh attempt</li>
+      </ul>
+      <p>Clicked-offer timestamps are retained for up to 90 days and are then removed automatically. Other locally stored information remains until it is replaced, cleared, or the extension is removed.</p>
+      <p>This information stays in the current Chrome profile and is not synchronized by the extension. Click activity is not transmitted to the developer or used to build a profile of the user.</p>
+
+      <h2>External requests</h2>
+      <p>The extension contacts <a href="https://www.gamerpower.com/">www.gamerpower.com</a> to retrieve the active giveaway feed and cover images. Those requests necessarily reveal standard connection information, such as the user’s IP address and browser request metadata, to GamerPower under its own privacy policy.</p>
+      <p>Selecting <strong>Get offer</strong> opens a GamerPower claim link in a new tab. GamerPower may redirect the user to the relevant game store. Destination sites apply their own privacy policies.</p>
+
+      <h2>Chrome permissions</h2>
+      <p>The extension uses local storage, periodic alarms, and narrowly scoped access to <code>https://www.gamerpower.com/*</code>. It does not read browsing history, storefront accounts, game libraries, page content, or passwords.</p>
+
+      <h2>Limited Use</h2>
+      <p>The use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Free Games Tracker uses locally stored information only to provide its giveaway feed, filters, visited-offer state, cached fallback, and unseen-offer badge. It does not sell data, use data for advertising, or transfer user data to third parties.</p>
+
+      <h2>Delete local data</h2>
+      <p>Removing Free Games Tracker from Chrome deletes its local storage under Chrome’s normal extension-removal behavior. Users and testers may also clear <code>chrome.storage.local</code> through the extension service worker’s developer tools, immediately resetting preferences, cached offers, and visited-offer history.</p>
+
+      <h2>Changes</h2>
+      <p>Material changes to this notice will be included with a new extension version and reflected by the date above.</p>
+    </main>
+  </body>
+</html>

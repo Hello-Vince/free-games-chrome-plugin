@@ -4,6 +4,8 @@ import { deflateSync } from "node:zlib";
 
 const root = resolve(import.meta.dirname, "..");
 const outputDirectory = resolve(root, "icons");
+const storeAssetDirectory = resolve(root, "store", "assets");
+const docsDirectory = resolve(root, "docs");
 const sizes = [16, 32, 48, 128];
 const scale = 4;
 
@@ -117,27 +119,49 @@ function drawIcon(size, background) {
   const canvas = makeCanvas(size);
   const white = [255, 255, 255, 255];
   const cutout = [...background, 255];
-  const margin = size * 0.06;
+  if (size !== 128) {
+    const margin = size * 0.06;
+    canvas.roundedRect(margin, margin, size - margin * 2, size - margin * 2, size * 0.23, [...background, 255]);
+    canvas.roundedRect(size * 0.21, size * 0.43, size * 0.58, size * 0.34, size * 0.045, white);
+    canvas.roundedRect(size * 0.17, size * 0.35, size * 0.66, size * 0.15, size * 0.045, white);
+    canvas.roundedRect(size * 0.46, size * 0.35, size * 0.09, size * 0.42, size * 0.02, cutout);
+    canvas.circle(size * 0.39, size * 0.29, size * 0.12, white);
+    canvas.circle(size * 0.61, size * 0.29, size * 0.12, white);
+    canvas.circle(size * 0.40, size * 0.29, size * 0.055, cutout);
+    canvas.circle(size * 0.60, size * 0.29, size * 0.055, cutout);
+    return encodePng(size, size, downsample(canvas, size));
+  }
 
-  canvas.roundedRect(margin, margin, size - margin * 2, size - margin * 2, size * 0.23, [...background, 255]);
+  const inset = 16;
+  const artSize = size - inset * 2;
+  const at = (ratio) => inset + artSize * ratio;
+
+  canvas.roundedRect(inset, inset, artSize, artSize, artSize * 0.23, [...background, 255]);
 
   // Gift box silhouette.
-  canvas.roundedRect(size * 0.21, size * 0.43, size * 0.58, size * 0.34, size * 0.045, white);
-  canvas.roundedRect(size * 0.17, size * 0.35, size * 0.66, size * 0.15, size * 0.045, white);
-  canvas.roundedRect(size * 0.46, size * 0.35, size * 0.09, size * 0.42, size * 0.02, cutout);
+  canvas.roundedRect(at(0.21), at(0.43), artSize * 0.58, artSize * 0.34, artSize * 0.045, white);
+  canvas.roundedRect(at(0.17), at(0.35), artSize * 0.66, artSize * 0.15, artSize * 0.045, white);
+  canvas.roundedRect(at(0.46), at(0.35), artSize * 0.09, artSize * 0.42, artSize * 0.02, cutout);
 
   // Ribbon loops.
-  canvas.circle(size * 0.39, size * 0.29, size * 0.12, white);
-  canvas.circle(size * 0.61, size * 0.29, size * 0.12, white);
-  canvas.circle(size * 0.40, size * 0.29, size * 0.055, cutout);
-  canvas.circle(size * 0.60, size * 0.29, size * 0.055, cutout);
+  canvas.circle(at(0.39), at(0.29), artSize * 0.12, white);
+  canvas.circle(at(0.61), at(0.29), artSize * 0.12, white);
+  canvas.circle(at(0.40), at(0.29), artSize * 0.055, cutout);
+  canvas.circle(at(0.60), at(0.29), artSize * 0.055, cutout);
   return encodePng(size, size, downsample(canvas, size));
 }
 
 await mkdir(outputDirectory, { recursive: true });
+await mkdir(storeAssetDirectory, { recursive: true });
+await mkdir(docsDirectory, { recursive: true });
 for (const size of sizes) {
-  await writeFile(resolve(outputDirectory, `bright-${size}.png`), drawIcon(size, [15, 118, 110]));
+  const brightIcon = drawIcon(size, [15, 118, 110]);
+  await writeFile(resolve(outputDirectory, `bright-${size}.png`), brightIcon);
   await writeFile(resolve(outputDirectory, `muted-${size}.png`), drawIcon(size, [116, 132, 139]));
+  if (size === 128) {
+    await writeFile(resolve(storeAssetDirectory, "icon-128.png"), brightIcon);
+    await writeFile(resolve(docsDirectory, "icon-128.png"), brightIcon);
+  }
 }
 
-console.log(`Generated ${sizes.length * 2} icons in ${outputDirectory}`);
+console.log(`Generated ${sizes.length * 2} extension icons and store/site icon copies.`);
